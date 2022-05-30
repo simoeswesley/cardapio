@@ -3,7 +3,7 @@ $primary: #A90E0E;
 $secondary: #FF7F0A;
 $bg: #FFFFFF;
 $bgSecondary: #FAFAFA;
-$font: #959494;
+$font: #949494;
 $title: #333;
 
 // Font-weight
@@ -14,15 +14,21 @@ $bold: 700;
 $extraBold: 800;
 $black: 900;
 
+// Funcions
+@mixin hoverSecondary {
+    color: $secondary;
+    transition: .5s ease;
+}
+
 * {
     padding: 0;
     margin: 0;
     outline: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
     background: $bg;
 }
@@ -110,13 +116,13 @@ a { text-decoration: none; }
 // NAVBAR
 .navbar {
     position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
 
     background: $primary;
     width: 100%;
     padding: 20px 0;
-    top: 0;
-    left: 0;
-    z-index: 1;
 
     .content {
         display: flex;
@@ -141,7 +147,7 @@ a { text-decoration: none; }
             justify-content: center;
             align-items: center;
 
-            @media (max-width: 1024px) { display: none; }
+            @media (max-width: 1229px) { display: none; }
         }
 
         .items {
@@ -152,46 +158,16 @@ a { text-decoration: none; }
                 color: $bgSecondary;
 
                 &:hover {
-                    color: $secondary;
-                    transition: .5s ease;
+                    @include hoverSecondary;
                 }
             }
-        }
-
-        .icons {
-            gap: 45px;
-
-            #cart, a {
-                position: relative;
-                color: $bg;
-                font-size: 1.5rem;
-                cursor: pointer;
-
-                &:hover {
-                    color: $secondary;
-                    transition: .5s ease;
-                }
-
-                #notify {
-                    position: absolute;
-                    right: -1px;
-                    top: 1px;
-                    background: lightgreen;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    border: 2px solid $primary;
-                }
-            }
-        }
-        .btnMobile, .itemsMobile {
         }
 
         .btnMobile {
             font-size: 2rem;
             color: $bg;
 
-            @media (min-width: 1025px) { display: none; }
+            @media (min-width: 1230px) { display: none; }
 
             &:hover {
                 color: $secondary;
@@ -199,8 +175,71 @@ a { text-decoration: none; }
             }
         }
 
-        .itemsMobile {
-            display: none;
+    }
+
+    .icons {
+        gap: 50px;
+
+        #cart, a {
+            position: relative;
+            color: $bg;
+            font-size: 1.5rem;
+            cursor: pointer;
+
+            &:hover {
+                color: $secondary;
+                transition: .5s ease;
+            }
+
+            .cartNotify {
+                display: none;
+                position: absolute;
+                right: -1px;
+                top: 1px;
+                background: lightgreen;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                border: 2px solid $primary;
+            }
+        }
+    }
+
+    .itemsMobile {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 55px 0;
+
+        background: $primary;
+        width: 65%;
+        height: 100vh;
+        box-shadow: 0 0 150px 0 rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: .5s ease;
+
+        @media (min-width: 1025px) { display: none; }
+
+        .icons {
+            display: flex;
+            margin-top: 25px;
+        }
+
+        a, div {
+            font-weight: $medium;
+            color: $bg;
+            font-size: 1.2rem;
+
+            &:hover {
+                color: $secondary;
+                transition: .5s ease;
+            }
         }
     }
 }
@@ -238,8 +277,7 @@ a { text-decoration: none; }
                 margin-right: 20px;
 
                 &:hover {
-                    color: $secondary;
-                    transition: .5s ease;
+                    @include hoverSecondary;
                 }
             }
         }
@@ -289,7 +327,7 @@ a { text-decoration: none; }
     h3 { margin-bottom: 12px; }
 
     span {
-        font-weight: $bold;
+        font-weight: $extraBold;
         color: $title;
     }
 }
@@ -298,14 +336,19 @@ a { text-decoration: none; }
 .linksMenu {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 
     margin-bottom: 35px;
     gap: 25px 50px;
 
-    a {
+    button, a {
+        border: none;
+        background: transparent;
         font-weight: $semiBold;
         color: $font;
+        font-size: 1rem;
+        cursor: pointer;
 
         &:hover {
             color: $secondary;
@@ -336,11 +379,26 @@ a { text-decoration: none; }
 .cardsMenu {
     display: flex;
     justify-content: center;
+    align-items: stretch;
     flex-wrap: wrap;
     gap: 20px;
+    // animation: fadeIn 5s ease;
+
+    // @keyframes fadeIn {
+    //     from {
+    //         opacity: 0;
+    //     }
+    //     to {
+    //         opacity: 1;
+    //     }
+    // }
 
     .card {
-        width: 280px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        width: 290px;
         background: $bg;
         border-radius: 15px;
         padding: 25px;
@@ -386,6 +444,7 @@ a { text-decoration: none; }
             background: transparent;
             cursor: pointer;
             width: 100%;
+            bottom: 0;
 
             .iconify-inline { margin-right: 3px; }
 
@@ -540,6 +599,10 @@ a { text-decoration: none; }
                 color: $bgSecondary;
                 font-size: 1.2rem;
                 margin-left: 18px;
+
+                &:hover {
+                    @include hoverSecondary;
+                }
             }
         }
     }

@@ -14,3 +14,4 @@ git clone https://github.com/viniciuslimaan/onlineMenu.git
 * Html
 * CSS
 * JavaScript
+    * ToastifyJs

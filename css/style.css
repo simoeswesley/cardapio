@@ -4,10 +4,10 @@
   outline: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
   background: #FFFFFF;
 }
@@ -56,7 +56,7 @@ p {
   font-weight: 400;
   font-size: 1rem;
   line-height: 130%;
-  color: #959494;
+  color: #949494;
 }
 
 .container {
@@ -126,12 +126,12 @@ a {
 
 .navbar {
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
   background: #A90E0E;
   width: 100%;
   padding: 20px 0;
-  top: 0;
-  left: 0;
-  z-index: 1;
 }
 
 .navbar .content {
@@ -184,7 +184,7 @@ a {
           align-items: center;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1229px) {
   .navbar .content .items, .navbar .content .icons {
     display: none;
   }
@@ -205,40 +205,12 @@ a {
   transition: .5s ease;
 }
 
-.navbar .content .icons {
-  gap: 45px;
-}
-
-.navbar .content .icons #cart, .navbar .content .icons a {
-  position: relative;
-  color: #FFFFFF;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.navbar .content .icons #cart:hover, .navbar .content .icons a:hover {
-  color: #FF7F0A;
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
-}
-
-.navbar .content .icons #cart #notify, .navbar .content .icons a #notify {
-  position: absolute;
-  right: -1px;
-  top: 1px;
-  background: lightgreen;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #A90E0E;
-}
-
 .navbar .content .btnMobile {
   font-size: 2rem;
   color: #FFFFFF;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1230px) {
   .navbar .content .btnMobile {
     display: none;
   }
@@ -250,8 +222,88 @@ a {
   transition: .5s ease;
 }
 
-.navbar .content .itemsMobile {
+.navbar .icons {
+  gap: 50px;
+}
+
+.navbar .icons #cart, .navbar .icons a {
+  position: relative;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navbar .icons #cart:hover, .navbar .icons a:hover {
+  color: #FF7F0A;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+.navbar .icons #cart .cartNotify, .navbar .icons a .cartNotify {
   display: none;
+  position: absolute;
+  right: -1px;
+  top: 1px;
+  background: lightgreen;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #A90E0E;
+}
+
+.navbar .itemsMobile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 55px 0;
+  background: #A90E0E;
+  width: 65%;
+  height: 100vh;
+  -webkit-box-shadow: 0 0 150px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 150px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+@media (min-width: 1025px) {
+  .navbar .itemsMobile {
+    display: none;
+  }
+}
+
+.navbar .itemsMobile .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+}
+
+.navbar .itemsMobile a, .navbar .itemsMobile div {
+  font-weight: 500;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+}
+
+.navbar .itemsMobile a:hover, .navbar .itemsMobile div:hover {
+  color: #FF7F0A;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
 }
 
 .banner {
@@ -394,7 +446,7 @@ a {
 }
 
 #about span {
-  font-weight: 700;
+  font-weight: 800;
   color: #333;
 }
 
@@ -405,18 +457,25 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-bottom: 35px;
   gap: 25px 50px;
 }
 
-.linksMenu a {
+.linksMenu button, .linksMenu a {
+  border: none;
+  background: transparent;
   font-weight: 600;
-  color: #959494;
+  color: #949494;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.linksMenu a:hover {
+.linksMenu button:hover, .linksMenu a:hover {
   color: #FF7F0A;
   -webkit-transition: .5s ease;
   transition: .5s ease;
@@ -447,13 +506,26 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 20px;
 }
 
 .cardsMenu .card {
-  width: 280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 290px;
   background: #FFFFFF;
   border-radius: 15px;
   padding: 25px;
@@ -509,6 +581,7 @@ a {
   background: transparent;
   cursor: pointer;
   width: 100%;
+  bottom: 0;
 }
 
 .cardsMenu .card .btn .iconify-inline {
@@ -653,7 +726,7 @@ a {
 
 .footerTop .content .links a {
   margin-bottom: 12px;
-  color: #959494;
+  color: #949494;
   font-weight: 500;
 }
 
@@ -712,5 +785,11 @@ a {
   color: #FAFAFA;
   font-size: 1.2rem;
   margin-left: 18px;
+}
+
+.footerBottom .content .social a:hover {
+  color: #FF7F0A;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
 }
 /*# sourceMappingURL=style.css.map */
