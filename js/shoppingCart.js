@@ -5,7 +5,7 @@ const showAllItemsValue = document.querySelector('#showAllItemsValue')
 const showDelivery = document.querySelector('#showDelivery')
 const showDiscount = document.querySelector('#showDiscount')
 const showTotal = document.querySelector('#showTotal')
-const promotionCode = document.querySelector('#promotionCode')
+const inputPromotionCode = document.querySelector('#promotionCode')
 const btnAddPromotionCode = document.querySelector('#addPromotionCode')
 const btnWantDelivery = document.querySelector('#wantDelivery')
 const btnDontWantDelivery = document.querySelector('#dontWantDelivery')
@@ -23,6 +23,7 @@ let itemsToShow
 let allItemsValue
 let deliveryValue = 0
 let discountValue = 0
+const promotionCode = 'easteregg'
 
 // Functions
 const generateCart = () => {
@@ -68,7 +69,7 @@ const addItem = id => {
     const cartItems = getCart()
     const newCartItems = []
 
-    cartItems.map(item => {
+    cartItems.forEach(item => {
         if (item.id === id)
             newCartItems.push({ id: item.id, qtd: item.qtd + 1 })
         else
@@ -83,7 +84,7 @@ const remItem = id => {
     const cartItems = getCart()
     const newCartItems = []
 
-    cartItems.map(item => {
+    cartItems.forEach(item => {
         if (item.id === id && item.qtd > 1)
             newCartItems.push({ id: item.id, qtd: item.qtd - 1 })
         else if (item.id === id && item.qtd <= 1)
@@ -113,9 +114,9 @@ const chooseDelivery = option => {
 }
 
 const addDiscount = () => {
-    const code = promotionCode.value.trim().toLowerCase()
+    const code = inputPromotionCode.value.trim().toLowerCase()
 
-    if (code === 'easteregg') {
+    if (code === promotionCode) {
         discountValue = 15
         appliedCode.showToast()
 
@@ -125,7 +126,7 @@ const addDiscount = () => {
 
 const init = () => {
     const generatedCart = generateCart()
-    generatedCart.length > 0 && generatedCart.sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0 )
+    generatedCart.length > 0 && generatedCart.sort((a, b) => a.type < b.type ? -1 : a.type > b.type ? 1 : 0 )
 
     itemsToShow = ''
     showItems.innerHTML = ''
@@ -135,7 +136,6 @@ const init = () => {
     else
         itemsToShow = '<p>Você ainda não adicionou itens no carrinho.</p>'
 
-    // Showing on page
     showOnPage()
 }
 
@@ -150,7 +150,29 @@ const showOnPage = () => {
 }
 
 const generateOrder = () => {
-    alert('Ainda vou fazer =D')
+    const generatedCart = generateCart()
+
+    if (generatedCart.length === 0) {
+        return noItemsInCart.showToast()
+    }
+
+    cart = '*Essa mensagem será enviada para o WhatsApp da lanchonete.* \n'
+    cart += 'Boa noite! Gostaria de encomendar: \n'
+    console.log(generatedCart)
+
+    generatedCart.length > 0 && generatedCart.sort((a, b) => a.type < b.type ? -1 : a.type > b.type ? 1 : 0 )
+
+    generatedCart.forEach(item => {
+        cart += '- ' + item.qtd + ' ' + item.name + '\n'
+    })
+
+    if (discountValue > 0) cart += '\nEstou utilizando o cupom: ' + promotionCode + '.'
+    if (deliveryValue > 0)
+        cart += '\nDesejo delivery.'
+    else
+        cart += '\nVou retirar no local.'
+
+    alert(cart)
 }
 
 // Notifications
@@ -184,6 +206,20 @@ const appliedCode = Toastify({
 
 const codeNotFound = Toastify({
     text: "Cupom não encontrado!",
+    duration: 5000,
+    newWindow: true,
+    close: true,
+    gravity: "bottom",
+    position: "right",
+    stopOnFocus: true,
+    style: {
+        background: "#FF7F0A",
+        boxShadow: "0 0 160px 0 #0008"
+    }
+})
+
+const noItemsInCart = Toastify({
+    text: "Não é possível gerar pedido sem ter item no carrinho.",
     duration: 5000,
     newWindow: true,
     close: true,
