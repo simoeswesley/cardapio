@@ -6,9 +6,10 @@ const showDelivery = document.querySelector('#showDelivery')
 const showDiscount = document.querySelector('#showDiscount')
 const showTotal = document.querySelector('#showTotal')
 const promotionCode = document.querySelector('#promotionCode')
-const addPromotionCode = document.querySelector('#addPromotionCode')
-const wantDelivery = document.querySelector('#wantDelivery')
-const dontWantDelivery = document.querySelector('#dontWantDelivery')
+const btnAddPromotionCode = document.querySelector('#addPromotionCode')
+const btnWantDelivery = document.querySelector('#wantDelivery')
+const btnDontWantDelivery = document.querySelector('#dontWantDelivery')
+const btnGenerateOrder = document.querySelector('#generateOrder')
 
 // Get
 const getCart = () => JSON.parse(localStorage.getItem('cart')) || []
@@ -20,7 +21,7 @@ const setCart = cartData => localStorage.setItem('cart', JSON.stringify(cartData
 let cart
 let itemsToShow
 let allItemsValue
-let deliveryValue = 3
+let deliveryValue = 0
 let discountValue = 0
 
 // Functions
@@ -97,13 +98,13 @@ const remItem = id => {
 
 const chooseDelivery = option => {
     if (option) {
-        wantDelivery.classList.add('active')
-        dontWantDelivery.classList.remove('active')
+        btnWantDelivery.classList.add('active')
+        btnDontWantDelivery.classList.remove('active')
 
         deliveryValue = 3
     } else {
-        wantDelivery.classList.remove('active')
-        dontWantDelivery.classList.add('active')
+        btnWantDelivery.classList.remove('active')
+        btnDontWantDelivery.classList.add('active')
 
         deliveryValue = 0
     }
@@ -146,6 +147,10 @@ const showOnPage = () => {
     showDelivery.innerHTML = '+ R$ ' + deliveryValue.toFixed(2).toString().replace('.', ',')
     showDiscount.innerHTML = '- R$ ' + ((totalValue * discountValue)/100).toFixed(2).toString().replace('.', ',')
     showTotal.innerHTML = 'R$ ' + (totalValue - ((totalValue * discountValue)/100)).toFixed(2).toString().replace('.', ',')
+}
+
+const generateOrder = () => {
+    alert('Ainda vou fazer =D')
 }
 
 // Notifications
@@ -191,9 +196,10 @@ const codeNotFound = Toastify({
     }
 })
 
-addPromotionCode.addEventListener('click', addDiscount)
-wantDelivery.addEventListener('click', function () { chooseDelivery(true) })
-dontWantDelivery.addEventListener('click', function () { chooseDelivery(false) })
+btnAddPromotionCode.addEventListener('click', addDiscount)
+btnWantDelivery.addEventListener('click', function () { chooseDelivery(true) })
+btnDontWantDelivery.addEventListener('click', function () { chooseDelivery(false) })
+btnGenerateOrder.addEventListener('click', generateOrder)
 
 init()
 
