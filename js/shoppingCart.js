@@ -156,9 +156,8 @@ const generateOrder = () => {
         return noItemsInCart.showToast()
     }
 
-    cart = '*Essa mensagem será enviada para o WhatsApp da lanchonete.* \n'
+    cart = '*Essa mensagem será enviada para o WhatsApp da lanchonete.* \n' //Remover essa mensagem quanto tive um WhatsApp para enviá-la
     cart += 'Boa noite! Gostaria de encomendar: \n'
-    console.log(generatedCart)
 
     generatedCart.length > 0 && generatedCart.sort((a, b) => a.type < b.type ? -1 : a.type > b.type ? 1 : 0 )
 
