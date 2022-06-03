@@ -18,5 +18,6 @@ git clone https://github.com/viniciuslimaan/onlineMenu.git
 ## Tecnologias utilizadas
 * Html
 * CSS
+* Sass
 * JavaScript
     * ToastifyJs
