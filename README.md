@@ -7,7 +7,7 @@ Projeto no figma:
 https://www.figma.com/file/zFC4MoN5y14YFafXLbF2oM/Home?node-id=0%3A1
 
 Deploy do projeto:
-https://viniciuslimaan.github.io/onlineMenu/
+https://viniciuslimaan.github.io/onlineMenu
 
 Para visualizar em seu computador use:
 
