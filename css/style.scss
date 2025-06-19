@@ -1,8 +1,8 @@
 // Colors
-$primary: #A90E0E;
-$secondary: #FF7F0A;
+$primary: #020605;
+$secondary: #88ca1f;
 $bg: #FFFFFF;
-$bgSecondary: #FAFAFA;
+$bgSecondary: #020202;
 $font: #949494;
 $title: #333;
 
@@ -41,6 +41,20 @@ html {
 ::selection {
     background: $secondary;
     color: $bg;
+}
+
+.logo {
+    
+  width: 300px;              /* Defina a largura desejada */
+  height: 100px;             /* Defina a altura desejada */
+  background-image: url('/img/logo.jpg');
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+  text-indent: -9999px;      /* Esconde o texto */
+  overflow: hidden;
+  border: 0;
 }
 
 // Fonts

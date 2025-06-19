@@ -1,0 +1,24 @@
+{
+  "name": "onlinemenu",
+  "version": "1.0.0",
+  "description": "Sistema de cardápio online de uma lanchonete fictícia, onde o cliente escolhe os produtos no projeto e após finalizar é encaminhado uma mensagem com todos os itens escolhidos no WhatsApp da empresa.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass css/style.scss css/style.css --watch --no-source-map, sass css/cart.scss css/cart.css --watch --no-source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciuslimaan/onlineMenu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viniciuslimaan/onlineMenu/issues"
+  },
+  "homepage": "https://github.com/viniciuslimaan/onlineMenu#readme",
+  "devDependencies": {
+    "sass": "^1.32.8"
+  }
+}
