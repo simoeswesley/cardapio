@@ -150,28 +150,22 @@ const showOnPage = () => {
 }
 
 const generateOrder = () => {
-    const generatedCart = generateCart()
+    const cart = getCart();
+    let message = 'Olá! Gostaria de fazer um pedido:%0A';
 
-    if (generatedCart.length === 0) {
-        return noItemsInCart.showToast()
-    }
+    cart.forEach(item => {
+         const nome = item.name || item.nome || 'Produto';
+        const quantidade = item.quantity || item.quantidade || 1;
+        message += `- ${nome} x${quantidade}%0A`;
+    });
 
-    cart = '*Essa mensagem será enviada para o WhatsApp da lanchonete.* \n' //Remover essa mensagem quanto tive um WhatsApp para enviá-la
-    cart += 'Boa noite! Gostaria de encomendar: \n'
+    message += `%0ATotal: R$ ${showTotal.textContent}`;
 
-    generatedCart.length > 0 && generatedCart.sort((a, b) => a.type < b.type ? -1 : a.type > b.type ? 1 : 0 )
+    // Substitua pelo número do WhatsApp da loja, apenas números com DDD e DDI (ex: 5511999999999)
+    const phone = '5561992762811';
+    const url = `https://wa.me/${phone}?text=${message}`;
 
-    generatedCart.forEach(item => {
-        cart += '- ' + item.qtd + ' ' + item.name + '\n'
-    })
-
-    if (discountValue > 0) cart += '\nEstou utilizando o cupom: ' + promotionCode + '.'
-    if (deliveryValue > 0)
-        cart += '\nDesejo delivery.'
-    else
-        cart += '\nVou retirar no local.'
-
-    alert(cart)
+    window.open(url, '_blank');
 }
 
 // Notifications
@@ -237,6 +231,3 @@ btnDontWantDelivery.addEventListener('click', function () { chooseDelivery(false
 btnGenerateOrder.addEventListener('click', generateOrder)
 
 init()
-
-// Easter Egg
-console.log('Você achou o Easter Egg do site =D\nUse o cupom EASTEREGG e ganhe 15% de desconto!')
